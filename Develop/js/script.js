@@ -30,14 +30,23 @@ function trackTime() {
         var startTime = moment(firstTime[i], 'h:mma');
 
         if (now.isAfter(startTime)) {
+            var desc = document.querySelectorAll('.description');
+            desc.forEach(descrSet);
+
             function descrSet() {
-                var desc = document.querySelector('.description');
                 desc.classList.add("past");
                 console.log("After worked");
             };
-            descrSet();    
+            /*
+            desc.forEach(function(desc) {
+
+            }) */
+            //descrSet();    
         };  
     }; 
+
+    //document.querySelectorAll(".saveBtn").forEach(function(saveBtn) {
+    //saveBtn.addEventListener("click", saveTask)
 
     for (var i = 0; i < lastTime.length; i++) {
         var endTime = moment(lastTime[i], 'h:mma');
@@ -68,8 +77,6 @@ function trackTime() {
 trackTime();
 
 
-
-
 //use .replace("[class], [class]") to change the class of a <textarea> when a certain time has passed
 //dayjs().isAfter(dayjs().format("7"));
 
@@ -81,18 +88,9 @@ var saveTask = function() {
     console.log(description);
 };
 
-document.querySelector(".saveBtn").addEventListener("click", saveTask);
-
-
-
-/* if the time is after the time expressed by the id and before the next hour
-(or the class or the text at the beginning of the line) then change the color of the textarea
-to red (present).
-if the time is after the time expressed by the id (or whatever it is that's paired)
-then change the the color of the textarea to green (future).
-Otherwise, change the color of the textarea to gray.
-
-*/
+document.querySelectorAll(".saveBtn").forEach(function(saveBtn) {
+    saveBtn.addEventListener("click", saveTask)
+});
 
 
 /*
