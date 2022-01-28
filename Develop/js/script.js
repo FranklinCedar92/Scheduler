@@ -6,7 +6,7 @@ var now = moment();
 
 //This is setting the color of each textarea
 function trackTime() {
-    //arrays of times for 
+    //arrays of times for the forLoops
     var firstTime = [
         '9:00am',
         '10:00am',
@@ -30,6 +30,7 @@ function trackTime() {
         '6:00pm'
     ];
 
+    //indicates past hours
     for (var i = 0; i < firstTime.length; i++) {
         var startTime = moment(firstTime[i], 'h:mma');
 
@@ -45,6 +46,7 @@ function trackTime() {
         };  
     }; 
 
+    //indicates future hours
     for (var i = 0; i < lastTime.length; i++) {
         var endTime = moment(lastTime[i], 'h:mma');
         
@@ -60,6 +62,7 @@ function trackTime() {
         }; 
     };
 
+    //indicates present hour
     for (var i = 0, j = 0; i < firstTime.length, j < lastTime.length; i++, j++) {
 
         if (now.isBetween(firstTime[i], lastTime[j])) {
@@ -77,24 +80,26 @@ function trackTime() {
 
 trackTime();
 
-/*
-function myFunction() {
-  var x = document.getElementById("myTextarea").value;
-  document.getElementById("demo").innerHTML = x;
-}
-*/
 
-var description = document.querySelector("textarea").textContent;
+var text = document.querySelector("textarea").textContent;
 
+// Adds content of textArea to local storage
 var saveTask = function() {
-    localStorage.setItem("description", description);
+    localStorage.setItem("description", text);
     console.log("info stored");
-    console.log(description);
+    console.log(text);
 };
 
 document.querySelectorAll(".saveBtn").forEach(function(saveBtn) {
     saveBtn.addEventListener("click", saveTask)
 });
+
+/*
+function myFunction() {
+    var text = document.getElementById("textArea").value;
+    document.getElementById("textArea").innerHTML = text;
+}
+*/
 
 
 /*
