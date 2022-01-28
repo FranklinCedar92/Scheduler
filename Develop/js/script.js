@@ -1,8 +1,12 @@
+// Date header
 document.getElementById("currentDay").textContent = moment().format("dddd, MMMM Do, YYYY");
 
+// current time in full format in case I need it
 var now = moment();
 
+//This is setting the color of each textarea
 function trackTime() {
+    //arrays of times for 
     var firstTime = [
         '9:00am',
         '10:00am',
@@ -30,55 +34,55 @@ function trackTime() {
         var startTime = moment(firstTime[i], 'h:mma');
 
         if (now.isAfter(startTime)) {
-            var desc = document.querySelectorAll('.description');
-            desc.forEach(descrSet);
-
-            function descrSet() {
-                desc.classList.add("past");
+            function descrSetAfter() {
+                
+                document.querySelectorAll('.description').forEach(function(dscrpA) {
+                    dscrpA.classList.add("past", "col-10", "description");
                 console.log("After worked");
+                });
             };
-            /*
-            desc.forEach(function(desc) {
-
-            }) */
-            //descrSet();    
+            descrSetAfter();    
         };  
     }; 
-
-    //document.querySelectorAll(".saveBtn").forEach(function(saveBtn) {
-    //saveBtn.addEventListener("click", saveTask)
 
     for (var i = 0; i < lastTime.length; i++) {
         var endTime = moment(lastTime[i], 'h:mma');
         
         if (now.isBefore(endTime)) {
-            function descrSet() {
-                var desc = document.querySelector('.description');
-                desc.classList.add("future");
+            function descrSetBefore() {
+                 
+                document.querySelectorAll('.description').forEach(function(dscrpB) {
+                    dscrpB.classList.add("future", "col-10", "description");
                 console.log("Before worked");
+                });
             };
-            descrSet();
+            descrSetBefore();
         }; 
     };
 
     for (var i = 0, j = 0; i < firstTime.length, j < lastTime.length; i++, j++) {
 
         if (now.isBetween(firstTime[i], lastTime[j])) {
-            function descrSet() {
-                var desc = document.querySelector('.description');
-                desc.classList.add("present");
+            function descrSetBetween() {
+
+                document.querySelectorAll('.description').forEach(function(dscrpC) {
+                    dscrpC.classList.add("present", "col-10", "description");
                 console.log("Between worked");
+                });
             };
-            descrSet();
+            descrSetBetween();
         };   
     };
 };
 
 trackTime();
 
-
-//use .replace("[class], [class]") to change the class of a <textarea> when a certain time has passed
-//dayjs().isAfter(dayjs().format("7"));
+/*
+function myFunction() {
+  var x = document.getElementById("myTextarea").value;
+  document.getElementById("demo").innerHTML = x;
+}
+*/
 
 var description = document.querySelector("textarea").textContent;
 
