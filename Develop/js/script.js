@@ -45,7 +45,7 @@ function trackTime() {
             descrSetAfter();    
         };  
     }; 
-
+    
     //indicates future hours
     for (var i = 0; i < lastTime.length; i++) {
         var endTime = moment(lastTime[i], 'h:mma');
@@ -61,7 +61,7 @@ function trackTime() {
             descrSetBefore();
         }; 
     };
-
+    /*
     //indicates present hour
     for (var i = 0, j = 0; i < firstTime.length, j < lastTime.length; i++, j++) {
 
@@ -76,19 +76,32 @@ function trackTime() {
             descrSetBetween();
         };   
     };
+    */
 };
 
 trackTime();
 
 
-var text = document.querySelector("textarea").textContent;
-
 // Adds content of textArea to local storage
-var saveTask = function() {
-    localStorage.setItem("description", text);
+var saveTask = function(event) {
+    //This will log the element that was clicked
+    var linkEl = event.target.getAttribute("myAttribute");
+    console.log(linkEl);
+
+    var key = Math.random();
+    var text = document.getElementById(linkEl).value;
+    localStorage.setItem(key, text);
     console.log("info stored");
     console.log(text);
 };
+
+/*
+What I need to do is grab the myAttribute name of the save button and match it with the id of the textarea.
+If I make the event.target.getAttribute("") a variable, then I have the right name. And what do I do with that?
+Can I use that variable as the argument of getElementById? Yes!
+
+
+ */
 
 document.querySelectorAll(".saveBtn").forEach(function(saveBtn) {
     saveBtn.addEventListener("click", saveTask)
