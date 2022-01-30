@@ -1,101 +1,40 @@
 // Date header
 document.getElementById("currentDay").textContent = moment().format("dddd, MMMM Do, YYYY");
- // this is just to test formatting
-var thing = document.querySelector("h1").className;
-console.log(thing);
-
-// current time in full format in case I need it
-var now = moment();
-
-var time = document.querySelector('.description').getAttribute("id")
-    console.log(time);
 
 
-//This is setting the color of each textarea
-/*function trackTime(event) {
-    //arrays of times for the forLoops
-    var firstTime = [
-        '9:00am',
-        '10:00am',
-        '11:00am',
-        '12:00pm',
-        '1:00pm',
-        '2:00pm',
-        '3:00pm',
-        '4:00pm',
-        '5:00pm'
+function trackTime() {
+    var timeSlot = [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
     ];
-    var lastTime = [
-        '10:00am',
-        '11:00am',
-        '12:00pm',
-        '1:00pm',
-        '2:00pm',
-        '3:00pm',
-        '4:00pm',
-        '5:00pm',
-        '6:00pm'
-    ];
-    
-    //indicates past hours
-    for (var i = 0; i < firstTime.length; i++) {
-        var startTime = moment(firstTime[i], 'h:mma');
 
-        if (now.isAfter(startTime)) {
-            function descrSetAfter() {
-                
-                document.querySelectorAll('.description').forEach(function(dscrpA) {
-                    dscrpA.classList.add("past", "col-10", "description");
-                console.log("After worked");
-                });
-            };
-            descrSetAfter();    
-        };  
-    }; 
-    
-    //indicates future hours
-    for (var i = 0; i < lastTime.length; i++) {
-        var endTime = moment(lastTime[i], 'h:mma');
-        
-        if (now.isBefore(endTime)) {
-            function descrSetBefore() {
-                 
-                document.querySelectorAll('.description').forEach(function(dscrpB) {
-                    dscrpB.classList.add("future", "col-10", "description");
-                console.log("Before worked");
-                });
-            };
-            descrSetBefore();
-        }; 
-    };
-    
-    //indicates present hour
-    for (var i = 0, j = 0; i < firstTime.length, j < lastTime.length; i++, j++) {
+    for (var i = 0; i < timeSlot.length; i++) {
+        var time = moment().format('HH');
+        var hour = timeSlot[i];
 
-        if (now.isBetween(firstTime[i], lastTime[j])) {
-            function descrSetBetween() {
+        console.log(time);
+        console.log(hour);
 
-                document.querySelectorAll('.description').forEach(function(dscrpC) {
-                    dscrpC.classList.add("present", "col-10", "description");
-                console.log("Between worked");
-                });
-            };
-            descrSetBetween();
-        };   
-    };
-    
-
+        if (time.isBefore(hour)) {
+            document.querySelectorAll('.description').forEach(function(dscrpB) {
+                dscrpB.classList.add("future", "col-10", "description");
+            console.log("Before worked");
+            });
+        }
+    }
 };
 
-if (now.isBefore(document.getAttribute("name"))) {
-    console.log("it worked");
-}
-var timeEl = document.getAttribute("name");
-console.log(timeEl); 
+trackTime();
 
-//I have this "name" attribute that is the name of each hour. I need to select that somehow. If the current time
-// is after/before that name, then the textarea is a certain color.
-
+/*
+$('#' + timeSlot[i])
  IDEALLY 
 var time = the id of the textarea
 if (now.isBefore(time, 'ha')) {
@@ -108,8 +47,6 @@ if (now.isBefore(time, 'ha')) {
 };
 descrSetBefore();
     
-
-trackTime();
 */
 
 // Adds content of textArea to local storage
