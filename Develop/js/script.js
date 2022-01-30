@@ -1,6 +1,7 @@
 // Date header
 document.getElementById("currentDay").textContent = moment().format("dddd, MMMM Do, YYYY");
 
+var time = moment();
 
 function trackTime() {
     var timeSlot = [
@@ -8,29 +9,35 @@ function trackTime() {
         10,
         11,
         12,
-        13,
-        14,
-        15,
-        16,
-        17
+        1,
+        2,
+        3,
+        4,
+        5
     ];
-
     for (var i = 0; i < timeSlot.length; i++) {
-        var time = moment().format('HH');
+        
         var hour = timeSlot[i];
-
-        console.log(time);
-        console.log(hour);
-
-        if (time.isBefore(hour)) {
+        if (time.isSame(hour)) {
+            document.querySelectorAll('.description').forEach(function(dscrpA) {
+                dscrpA.classList.add("future", "col-10", "description");
+            console.log("Same worked");
+            });
+        }
+        else if (time.isBefore(hour)) {
             document.querySelectorAll('.description').forEach(function(dscrpB) {
                 dscrpB.classList.add("future", "col-10", "description");
             console.log("Before worked");
             });
         }
+        else {
+            document.querySelectorAll('.description').forEach(function(dscrpC) {
+                dscrpC.classList.add("past", "col-10", "description");
+            console.log("After worked");
+            });
+        }
     }
 };
-
 trackTime();
 
 /*
@@ -53,13 +60,10 @@ descrSetBefore();
 var saveTask = function(event) {
     //This will log the element that was clicked
     var linkEl = event.target.getAttribute("myAttribute");
-    console.log(linkEl);
 
     var key = Math.random();
     var text = document.getElementById(linkEl).value;
     localStorage.setItem(key, text);
-    console.log("info stored");
-    console.log(text);
 };
 
 /*
