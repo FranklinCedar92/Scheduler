@@ -1,16 +1,15 @@
 // Date header
 document.getElementById("currentDay").textContent = moment().format("dddd, MMMM Do, YYYY");
-
+ // this is just to test formatting
 var thing = document.querySelector("h1").className;
 console.log(thing);
+
 // current time in full format in case I need it
 var now = moment();
 
-document.querySelectorAll('.description').forEach(trackTime);
+var time = document.querySelector('.description').getAttribute("id")
+    console.log(time);
 
-function trackTime() {
-    console.log(target);
-}
 
 //This is setting the color of each textarea
 /*function trackTime(event) {
