@@ -18,6 +18,7 @@ function trackTime() {
     for (var i = 0; i < timeSlot.length; i++) {
         
         var hour = timeSlot[i];
+        
         if (time.isSame(hour)) {
             document.querySelectorAll('.description').forEach(function(dscrpA) {
                 dscrpA.classList.add("future", "col-10", "description");
